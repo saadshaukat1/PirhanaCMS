@@ -34,12 +34,15 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: AzureWebApp@1
+- task: AzureRmWebAppDeployment@4
   inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure for Students Starter(d0be52ca-39dd-44c9-8e1b-2dc14637dcc8)'
     appType: 'webApp'
-    appName: 'pirhana'
+    WebAppName: 'PirhanaCMS20210609132503'
     deployToSlotOrASE: true
-    resourceGroupName: 'Pirhana-dev-rg'
-    slotName: 'production'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    deploymentMethod: 'auto'
+    ResourceGroupName: 'Pirhana-dev-rg'
+    SlotName: 'production'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    enableCustomDeployment: true
+    DeploymentType: 'webDeploy'
